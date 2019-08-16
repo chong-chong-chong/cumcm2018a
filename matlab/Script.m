@@ -1,7 +1,7 @@
-hl = 6.1;
-hr = 13;
+hl = 8.31;
+hr = 98;
 
-del_x = 1e-4;
+del_x = 1e-6;
 del_t = 1e-2;
 x4 = del_x:del_x:0.005-del_x;
 x43 = 0.005;
@@ -14,7 +14,7 @@ x0 = 0;
 xend = 0.0152;
 xp = [x0,x43,x32,x21,xend];
 %t = 0:del_t:300;
-N = 153;
+N = 1521;
 u1 = ones(N,1)*37.0;
 u = ones(N,1)*37.0;
 Rp = zeros(N,N);
@@ -49,17 +49,17 @@ u_end = 75;
 %R_n * u_n+1 = R_p * u_n + b
 
 
-Rp(1,1) = - k4/del_x - hl + rho4*c4/del_t;
-Rp(1,2) = k4/del_x;
+Rp(1,1) = - k4/(2*del_x) - hl/2 + del_x*rho4*c4/del_t;
+Rp(1,2) = k4/(2*del_x);
 
-Rn(1,1) = rho4*c4/del_t ;
-
+Rn(1,1) = k4/(2*del_x) + hl/2 + del_x*rho4*c4/del_t ;
+Rn(1,2) = -k4/(2*del_x);
 
 delta(1) = hl*u_0;
 
 for region = 1:4
-    a = 2 + xp(region)/del_x;
-    b = xp(region+1)/del_x;
+    a = round(2 + xp(region)/del_x);
+    b = round(xp(region+1)/del_x);
     r = rs(region);
     for index = a:b
 
@@ -75,11 +75,10 @@ for region = 1:4
     % (u_{i+1} - u_{i})*k_{next} = (u_{i} - u_{i-1})*k_{pre}
     
     if region == 4
-        Rp(index,index-1) = k1/del_x;
-        Rp(index,index) = -(k1/del_x+hr)+rho1*c1/del_t;
-
-        Rn(index,index) = rho1*c1/del_t;
-
+        Rp(index,index-1) = k1/(2*del_x);
+        Rp(index,index) = - k1/(2*del_x) - hr/2 + rho1*c1*del_x/del_t;
+        Rn(index,index) = del_x*rho1*c1/del_t + k1/(2*del_x) + hr/2;
+        Rn(index,index-1) = -k1/(2*del_x);
         delta(N) = hr*u_end;
     else
         kn = k(region+1);
@@ -99,7 +98,8 @@ for region = 1:4
 end
 
 
-
+%[L,U,P] = lu(Rn);
+%P*Rn = L*U
 A = Rn\Rp;
 b = Rn\delta;
 u = (eye(N)-A)\b;
@@ -129,7 +129,7 @@ for i = 1:55
     h = figure();
     plot(x,u_time(:,i));
     xlim([0,0.0152]);
-    ylim([37,45]);
+    ylim([37,75]);
     framenow =getframe();
     close(h);
     im{i} = frame2im(framenow);

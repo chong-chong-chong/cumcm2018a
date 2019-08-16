@@ -1,22 +1,20 @@
-function u1 = getU1(hl,hr)
+function u_alltime = getUt(hl,hr)
 
 
-del_x = 1e-4;
-del_t = 1e-2;
-x4 = del_x:del_x:0.005-del_x;
+del_x = 1e-5;
+del_t = 1e-3;
+
 x43 = 0.005;
-x3 = 0.005+del_x:del_x:0.0086-del_x;
+
 x32 = 0.0086;
-x2 = 0.0086+del_x:del_x:0.0146-del_x;
+
 x21 = 0.0146;
-x1 = 0.0146+del_x:del_x:0.0152-del_x;
+
 x0 = 0;
 xend = 0.0152;
 xp = [x0,x43,x32,x21,xend];
 %t = 0:del_t:300;
 N = round(xend/del_x+1);
-u1 = ones(N,1)*37.0;
-u = ones(N,1)*37.0;
 Rp = zeros(N,N);
 Rn = zeros(N,N);
 delta = zeros(N,1);
@@ -58,8 +56,8 @@ Rn(1,2) = -k4/(2*del_x);
 delta(1) = hl*u_0;
 
 for region = 1:4
-    a = 2 + xp(region)/del_x;
-    b = xp(region+1)/del_x;
+    a = round(2 + xp(region)/del_x);
+    b = round(xp(region+1)/del_x);
     r = rs(region);
     for index = a:b
 
@@ -71,7 +69,7 @@ for region = 1:4
         Rn(index,index) = 1 + 2*r;
         Rn(index,index+1) = -r ;
     end
-    index = index + 1;%ÂàÜÊÆµ‰ΩçÁΩÆÁöÑÁü©ÈòµÂèÇÔø?
+    index = index + 1;
     % (u_{i+1} - u_{i})*k_{next} = (u_{i} - u_{i-1})*k_{pre}
     
     if region == 4
@@ -101,6 +99,17 @@ end
 
     A = Rn\Rp;
     b = Rn\delta;
-    u = (eye(N)-A)\b;
-    u1 = u(1);
+    u_s = (eye(N)-A)\b;%≤ª∂Øµ„
+    
+    u_t = ones(N,1)*37.0;
+    u_del = u_t - u_s;
+    A_100 = A^1000;
+    u_alltime = zeros(5401,1);
+    i = 1;
+    for time = 0:1:5400
+        u_alltime(i) = u_t(1);
+        i = i +1;
+        u_del = A_100*u_del;
+        u_t = u_del + u_s;
+    end
 end
