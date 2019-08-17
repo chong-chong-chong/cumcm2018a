@@ -1,15 +1,15 @@
-function u_alltime = getUt(L2)
+function res = getUt_t(L2,L4,t)
 u_0 = 37;
-u_end = 65;
+u_end = 80;
 hl = 8.318143355830285;
 hr = 1.002000000000000e+02;
-total_time = 1500;
+
 del_x = 1e-4;
 del_t = 0.01;
 L1 = 0.6/1000;
 %L2 = 0.6/1000;
 L3 = 3.6/1000;
-L4 = 5.5/1000;
+%L4 = 5.5/1000;
 x43 = L4;
 
 x32 = L4+L3;
@@ -116,15 +116,6 @@ end
     b = Rn\delta;
     u_s = (eye(N)-A)\b;%²»¶¯µã
     u_t = ones(N,1)*37.0;
-    u_del = u_t - u_s;
-    A_dt = A^100;
-    
-    u_alltime = zeros(total_time+1,1);
-    i = 1;
-    for time = 0:1:total_time
-        u_alltime(i) = u_t(1);
-        u_del = A_dt*u_del;
-        u_t = u_del + u_s;
-        i = i +1;
-    end
+    u_t = A^(100*t)*(u_t - u_s) + u_s;
+    res = u_t(1);
 end

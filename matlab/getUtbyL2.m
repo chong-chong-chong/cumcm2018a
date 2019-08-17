@@ -1,4 +1,4 @@
-function u_alltime = getUt(L2)
+function res = getUtbyL2(L2)
 u_0 = 37;
 u_end = 65;
 hl = 8.318143355830285;
@@ -116,15 +116,7 @@ end
     b = Rn\delta;
     u_s = (eye(N)-A)\b;%²»¶¯µã
     u_t = ones(N,1)*37.0;
-    u_del = u_t - u_s;
-    A_dt = A^100;
+    u_t = A^(100*total_time)*(u_t - u_s) + u_s;
+    res = u_t(1);
     
-    u_alltime = zeros(total_time+1,1);
-    i = 1;
-    for time = 0:1:total_time
-        u_alltime(i) = u_t(1);
-        u_del = A_dt*u_del;
-        u_t = u_del + u_s;
-        i = i +1;
-    end
 end
