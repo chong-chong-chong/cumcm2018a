@@ -1,8 +1,8 @@
 function u_alltime = getUt(hl,hr)
 
 
-del_x = 1e-5;
-del_t = 1e-3;
+del_x = 1e-4;
+del_t = 1;
 
 x43 = 0.005;
 
@@ -47,13 +47,21 @@ u_end = 75;
 %R_n * u_n+1 = R_p * u_n + b
 
 
-Rp(1,1) = - k4/(2*del_x) - hl/2 + del_x*rho4*c4/del_t;
+%Rp(1,1) = k4/del_x + hl;
+%Rp(1,2) = -k4/(del_x);
+
+%Rn(1,1) = -hl-k4/del_x;
+%Rn(1,2) = -k4/(del_x);
+
+Rp(1,1) = - k4/(2*del_x) - hl/2 + 0.5*del_x*rho4*c4/del_t;
 Rp(1,2) = k4/(2*del_x);
 
-Rn(1,1) = k4/(2*del_x) + hl/2 + del_x*rho4*c4/del_t ;
+Rn(1,1) = k4/(2*del_x) + hl/2 + 0.5*del_x*rho4*c4/del_t;
 Rn(1,2) = -k4/(2*del_x);
 
 delta(1) = hl*u_0;
+
+
 
 for region = 1:4
     a = round(2 + xp(region)/del_x);
@@ -81,8 +89,10 @@ for region = 1:4
     else
         kn = k(region+1);
         kp = k(region);
-        cm = 0.5*(c(region)+c(region+1));
-        rhom = 0.5*(rho(region)+rho(region+1));
+        alpha____ = 0.5;
+        beta____ = 1-alpha____;
+        cm = alpha____*c(region)+beta____*c(region+1);
+        rhom = alpha____*rho(region)+beta____*rho(region+1);
         rn = del_t*kn/(rhom*cm*2*del_x^2);
         rp = del_t*kp/(rhom*cm*2*del_x^2);
         Rp(index,index-1) = rp;   
@@ -100,16 +110,15 @@ end
     A = Rn\Rp;
     b = Rn\delta;
     u_s = (eye(N)-A)\b;%²»¶¯µã
-    
     u_t = ones(N,1)*37.0;
     u_del = u_t - u_s;
-    A_100 = A^1000;
+    A_dt = A;
     u_alltime = zeros(5401,1);
     i = 1;
     for time = 0:1:5400
         u_alltime(i) = u_t(1);
-        i = i +1;
-        u_del = A_100*u_del;
+        u_del = A_dt*u_del;
         u_t = u_del + u_s;
+        i = i +1;
     end
 end
