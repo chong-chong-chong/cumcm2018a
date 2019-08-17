@@ -117,14 +117,16 @@ end
     u_s = (eye(N)-A)\b;%²»¶¯µã
     u_t = ones(N,1)*37.0;
     u_del = u_t - u_s;
-    A_dt = A^100;
+    A_dt = A^320000;
+    u_t = u_del*A_dt+u_s;
+    res = u_t(1);
     
-    u_alltime = zeros(total_time+1,1);
-    i = 1;
-    for time = 0:1:total_time
-        u_alltime(i) = u_t(1);
-        u_del = A_dt*u_del;
-        u_t = u_del + u_s;
-        i = i +1;
-    end
+    %u_alltime = zeros(total_time+1,1);
+    %i = 1;
+    %for time = 0:1:total_time
+    %    u_alltime(i) = u_t(1);
+    %    u_del = A_dt*u_del;
+    %    u_t = u_del + u_s;
+    %    i = i +1;
+    %end
 end

@@ -4,8 +4,9 @@ alpha = (75-37-11.08)/11.08;
 figure();
 %hl = 8.32:0.0005:8.4000000;
 %hr = hl./(alpha-beta*hl);
-hr = 100.1:0.01:100.3;
+hr = 100:1:78;
 hl = alpha*hr./(1+beta*hr);
+plot(hl,hr);
 %%
 dataNum = length(hl);
 e2 = zeros(dataNum,1);
