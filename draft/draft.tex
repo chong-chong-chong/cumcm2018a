@@ -56,17 +56,32 @@
         =
         ru_{i+1}^{n} + (1-2r)u_{i}^{n} + ru_{i-1}^{n}
     \]
-    在介质交界处,记前一种介质的热传导率为\(k_p\),后一种介质的热传导率为\(k_n\)有:
+    在介质交界处,假设小区块分成两半,每一半介质不同,记前一种介质的热传导率为\(k_p\),后一种介质的热传导率为\(k_n\),
+    \(\rho c\)是前后两种介质单位体积热容的平均值,有:
     \[
         \frac{1}{2}
         \left[
             \frac{k_n u_{i+1}^{n+1} + k_p u_{i-1}^{n+1} - (k_p+k_n)u_{i}^{n+1}) }{\Delta x^2}
             +
-            \frac{k_n u_{i+1}^{n} + k_p u_{i-1}^{n} - (k_p+k_n)u_{i}^{n}) }{\Delta x^2}
+            \frac{k_n u_{i+1}^{n} + k_p u_{i-1}^{n} - (k_p+k_n)u_{i}^{n} }{\Delta x^2}
         \right]
-        k
         =
         \frac{ u_{i}^{n+1} - u_{i}^{n} }{\Delta t} \rho c
+    \]
+    在两端处,以左端为例:
+    \[
+        \frac{1}{2}
+        \left[
+            k\frac{ u_{2}^{n+1}  - u_{1}^{n+1} }{\Delta x}
+            -
+            h_l(u_{1}^{n+1} - u_w)
+            +
+            k\frac{ u_{2}^{n}  - u_{1}^{n} }{\Delta x}
+            -
+            h_l(u_{1}^{n} - u_w)
+        \right]
+        =
+        \frac{ u_{i}^{n+1} - u_{i}^{n} }{\Delta t} \rho c \frac{\Delta x}{2}
     \]
     根据这样多重线性映射的关系,得到递推式:
     \(\bf{R_n}\bf{u}^{n+1} = \bf{R_p}\bf{u}^{n} + \bf{q}\)
@@ -83,4 +98,14 @@
     \(  \bf{u}^{n} = \bf{A}^n (\bf{u}^0 - \bf{u}_s) + \bf{u}_s\)
     显然的:
     \(\bf{u}_s = (\bf{I} - \bf{A})^{-1}\bf{b}\)
+    这样就可以快速的求解任意时刻的温度分布:
+    \[  \bf{u}|_{t = t_0} = \bf{A}^{\frac{t_0}{\Delta t}} (\bf{u}^0 - \bf{u}_s) + \bf{u}_s\]
+
+
+    问题1两个h的确定:
+    \[\sum_{i=1}^4 \frac{L_i}{k_i} + \frac{1}{h_l} + \frac{1}{h_r} = \frac{u_{wr}-u_{wl}}{q}\]
+    又由热平衡:\( h_r(u_l-u_{wl}) = q\)
+    不难得出:
+    \[h_l = \frac{\alpha h_r}{1+\beta hr}\]
+    其中参数\(\alpha = 2.4296 ,\beta = 0.2821\)
 \end{document}

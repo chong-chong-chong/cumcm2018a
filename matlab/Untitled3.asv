@@ -43,11 +43,9 @@ for index2 = 1:length(L2)
     U3300(index2) = getUtbyL2(L2(index2));
 end
 %%
-plot(L2,U3300)
+plot(L2,U3300-44)
 hold on
-line([19/1000,21/1000],[44,44],'LineStyle','--','Color','r')
-xlabel('L2')
-ylabel('u|_{t=3300s}')
+line([19/1000,21/1000],[0,0],)
 %20.8mm
 %%
 L_S = 20.5/1000;

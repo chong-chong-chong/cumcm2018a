@@ -4,7 +4,7 @@ alpha = (75-37-11.08)/11.08;
 %figure();
 %hl = 8.32:0.0005:8.4000000;
 %hr = hl./(alpha-beta*hl);
-hr = 100.62:0.001:100.63;
+hr = 80:1:120;
 hl = alpha*hr./(1+beta*hr);
 %%
 dataNum = length(hl);
@@ -16,7 +16,9 @@ for index=1:dataNum
     e2(index) = norm(realUt-Ut,2);
 end
 %%
-plot(e2)
+plot(hr,sqrt(e2/5401))
+xlabel('h_r')
+ylabel('S')
 %%
 [val,ind] = min(e2);
 %8.319346761353728,1.006260000000000e+02
