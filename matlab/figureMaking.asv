@@ -10,7 +10,7 @@ hold on
 %    plot(getUt(hl(index),hr(index)),'Color','g')
 %end
 plot(realUt,'Color','k');
-plot(getUt(8.319346761353728,1.006260000000000e+02),'Color','r');
+plot(getUt(,200),'Color','r');
 plot(getUt(8.234835030032185,77.31),'Color','b');
 %%
 %8.327,1.034192800473363e+02
