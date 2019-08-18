@@ -113,7 +113,7 @@ end
 
     A = Rn\Rp;
     b = Rn\delta;
-    u_s = (eye(N)-A)\b;%²»¶¯µã
+    u_s = (eye(N)-A)\b;%ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     u_t = ones(N,1)*37.0;
     u_del = u_t - u_s;
     A_dt = A^100;

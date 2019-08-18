@@ -68,7 +68,38 @@ cumcmthesis 是为全国大学生数学建模竞赛编写的\LaTeX{}模板, 旨�
     
         (3) 当环境温度为80 时，确定II层和IV层的最优厚度，确保工作30分钟时，假人皮肤
         外侧温度不超过47ºC，且超过44ºC的时间不超过5分钟。
+\section{问题分析}
+    \subsection{问题一的分析}
+    问题一要求建立温度在时间和空间上的分布函数，在各阻热层各向同性的假设下，仅需
+    考虑一维情况下的温度分布。考虑热量传输过程，该过程有75℃和37℃两个恒温源
+    在75℃边界上主要考虑热对流，在中间四层介质中热量主要以热传导方式进行传递，皮肤
+    表面和37℃恒温源之间仍然主要考虑热对流形式。因此问题一需要建立基于热传导的温度
+    分布模型，由傅里叶定律和能量守恒定律推导出四层介质的热传导方程。根据初始时刻的
+    温度分布都为37℃建立初始条件。根据热传导过程温度场的连续性建立各层介质之间的
+    衔接条件。根据高温恒温热源以及低温恒温热源处的热对流方程（传热系数未知）确定方程
+    的边界条件。由于向前差分方程不满足r<=1/2会出现振荡情况，因此考虑将微分方程转化为
+    精度较高的克兰克－尼科尔森差分方程\cite{1}。由于求出的系数矩阵\(\bf{R_p},\bf{R_n}\)
+    都是三对角矩阵,可以快速求逆,再加上对不动点的利用,可以快速求出皮肤表面温度关于时间的变化曲线，
+    该曲线与热对流方程的传热系数有关，利用附件2测量所得假人皮肤外侧温度，通过最小二乘法
+    求出皮肤表面温度关于时间函数与实际情况最接近时的传热系数，最后由求得的传热系数
+    求出温度在时间和空间上的分布并生成表格。
 
+    \subsection{问题二的分析}
+    问题一建立了温度在时间和空间上的分布函数，由高温恒温热源、低温恒温热
+    源、传热系数、各介质相关性质可以求出任意时间和空间上的温度值；
+
+    问题二是求解 II 层介质最优厚度的一个最优化问题，从服装成本最低与穿着
+    舒适度最高两方面考虑需求取II层介质厚度的最小值，其约束条件为假人皮肤外侧温
+    度60分钟时不超过47ºC，55分钟时不超过44℃。因此我们使用二分查找法，对
+    II 层介质的所有可能厚度进行遍历，最终求出满足约束条件的最小厚度。
+
+
+    \subsection{问题三的分析}
+    问题三是求解 II，IV 两层的最优厚度的一个多目标的优化问题。类似于问题二，
+    需要求取满足约束条件情况下的II，IV 两层的厚度使服装成本最低和穿着舒适度最高。
+    该问题约束条件为假人皮肤外侧温度30分钟时不超过47ºC，25分钟时不超过44℃.考虑
+    对对II 介质与 IV 介质厚度进行双重循环遍历，寻找到满足约束条件的II、IV两层厚度
+    范围，最终根据服装成本最低和穿着舒适度最高的目标确定 II，IV 两层的最优厚度。
 \section{模型假设}
 
 \begin{itemize}
@@ -106,7 +137,7 @@ cumcmthesis 是为全国大学生数学建模竞赛编写的\LaTeX{}模板, 旨�
 \section{模型建立与求解}
 
     \subsection{问题一：确定温度分布情况} 
-        \subsection{问题的分析} 
+        \paragraph{问题的分析} 
         问题一要求建立温度在时间和空间上的分布函数，在各阻热层各向同性的假设下，仅需
     考虑一维情况下的温度分布。考虑热量传输过程，该过程有75℃和37℃两个恒温源
     在75℃边界上主要考虑热对流，在中间四层介质中热量主要以热传导方式进行传递，皮肤
@@ -115,11 +146,12 @@ cumcmthesis 是为全国大学生数学建模竞赛编写的\LaTeX{}模板, 旨�
     温度分布都为37℃建立初始条件。根据热传导过程温度场的连续性建立各层介质之间的
     衔接条件。根据高温恒温热源以及低温恒温热源处的热对流方程（传热系数未知）确定方程
     的边界条件。由于向前差分方程不满足r<=1/2会出现振荡情况，因此考虑将微分方程转化为
-    精度较高的克兰克－尼科尔森差分方程\cite{1}。利用追赶法求出皮肤表面温度关于时间的函数，该
-    函数与热对流方程的传热系数有关，利用附件2测量所得假人皮肤外侧温度，通过最小二乘法
+    精度较高的克兰克－尼科尔森差分方程\cite{1}。由于求出的系数矩阵\(\bf{R_p},\bf{R_n}\)
+    都是三对角矩阵,可以快速求逆,再加上对不动点的利用,可以快速求出皮肤表面温度关于时间的变化曲线，
+    该曲线与热对流方程的传热系数有关，利用附件2测量所得假人皮肤外侧温度，通过最小二乘法
     求出皮肤表面温度关于时间函数与实际情况最接近时的传热系数，最后由求得的传热系数
     求出温度在时间和空间上的分布并生成表格。
-        \subsection{模型的建立}
+        \paragraph{模型的建立}
         给定区间 \([x_{i-1},x_i]\),每个区间上都有热力学参数:\(k_i,\rho_i,c_i\)，三者
     分别为该区间上热传导率、密度和比热容，其中\(i=0,1,2,3,4\)。\\
     从而可以得到热传导方程：\cite{2}
@@ -157,7 +189,14 @@ cumcmthesis 是为全国大学生数学建模竞赛编写的\LaTeX{}模板, 旨�
     \]
     右端在高温工作服表面也是类似的空气流动，同样是这样的原理和公式。
 
-    在单一介质内部,我们采用克兰克－尼科尔森差分法（C-N方法）做差分，
+    在单一介质内部,我们采用克兰克－尼科尔森差分法（C-N方法）做差分，将每一部分看做一个小单元,分析它热量的变化
+    \[(q_{i+1} - q_{i+1})\Delta t = \rho c \Delta x\]
+
+    \begin{figure}[h] 
+        \centering 
+        \includegraphics[scale=0.9]{../figure/diff.png} 
+        \caption{区块模拟图}\label{diff}    
+    \end{figure}
     可以得到:
     \[
         \frac{1}{2}
@@ -228,7 +267,7 @@ cumcmthesis 是为全国大学生数学建模竞赛编写的\LaTeX{}模板, 旨�
     这样就可以快速的求解任意时刻的温度分布:
     \[\bf{u}|_{t = t_0} = \bf{A}^{\frac{t_0}{\Delta t}} (\bf{u}^0 - \bf{u}_s) + \bf{u}_s\]
 
-        \subsection{模型的求解}
+        \paragraph{模型的求解}
     记\(h_l,h_r\)分别为左右两边的换热系数,\(u_l,u_r\)分别为左右两边的温度,\(u_{wl},u_{wr}\)分别为左右两边的环境温度
     根据稳态的热平衡,我们可以列出如下关系式:
     \[\sum_{i=1}^4 \frac{L_i}{k_i} + \frac{1}{h_l} + \frac{1}{h_r} = \frac{u_{wr}-u_{wl}}{q}\]
@@ -240,100 +279,83 @@ cumcmthesis 是为全国大学生数学建模竞赛编写的\LaTeX{}模板, 旨�
     \[S = \sqrt{\frac{\sum_{i=1}^{N}(u_i-\hat{u_i})^2}{N}}\]
     取得最小值
     计算可得\(h_r\)大致为:100.63,\(h_l\)大致为8.319,相对应的\(S = 0.052\)
-    \(S-h_r\)的关系见下图    
+    \(S-h_r\)的关系见下图:
+    \begin{figure}[h] 
+        \centering 
+        \includegraphics[scale=0.9]{../figure/ques1Optimization.png} 
+        \caption{实际数据与计算结果的对比}\label{optimization}    
+    \end{figure}
         \subsection{结果的分析和检验} 
 
-        \begin{figure}[htb] 
-        \centering 
-        \includegraphics[scale=0.9]{../figure/ques1result.png} 
-        \caption{实际数据与计算结果的对比}\label{fig:one}    
+        \begin{figure}[h] 
+            \centering 
+            \includegraphics[scale=0.9]{../figure/ques1result.png} 
+            \caption{实际数据与计算结果的对比}\label{cou}    
         \end{figure}
 
 
     \subsection{问题二：确定II层介质最优厚度} 
-        \subsection{问题的分析} 
-        问题一建立了温度在时间和空间上的分布函数，由高温恒温热源、低温恒温热
-    源、传热系数、各介质相关性质可以求出任意时间和空间上的温度值；
-        问题二是求解 II 层介质最优厚度的一个最优化问题，从服装成本最低与穿着
-    舒适度最高两方面考虑需求取II层介质厚度的最小值，其约束条件为假人皮肤外侧温
-    度60分钟时不超过47ºC，55分钟时不超过44℃。因此我们使用二分查找法，对
-     II 层介质的所有可能厚度进行遍历，最终求出满足约束条件的最小厚度。 
-        \subsection{模型的求解}
-        一定时间后的皮肤表面温度一定是随着材料厚度单调递减的.因此最佳厚度
-        一定是恰好在55分钟的时候达到\(44^{\circ}C\)的厚度.
-    采用二分查找的方法,确定这个厚度
-    通过计算,可以得到第二层厚度\(L_2\)与55分钟的温度\(u_{3300}\)的关系如图:
-    可以得到\(L2\)的最优厚度为20.9mm  
+        \paragraph{问题的分析} 
+       
+        
+     在问题一中求出最符合实验结果的传热系数h，问题2需要求解满足约束条件下的II层介质最优厚度，该问题为单一变量的优化问题，
+     目标为服装成本最低与穿着舒适度最高。
+    易知当材料厚度最小时成本最低且舒适度最高。因此问题2为在满足条件：
+    情况下，求取II层介质厚度d的最小值min d。
+        \paragraph{模型的求解}
+        采用二分查找的方法,确定II层介质的最小厚度，在II层介质的允许厚度中进行枚举，得出不同介质厚度相对应的55分钟和60分钟时的温度\(u_{3300}\)，通过（****约束条件）
+    找到II层介质的临界值，该临界值即为所求目标：min d。
+
+    通过matlab所得II层厚度\(L_2\)与55分钟和60分钟的皮肤表面温度\(u_{3300}\)的关系如图:
+
+    \begin{figure}[h] 
+        \centering 
+        \includegraphics[scale=0.9]{../figure/ques2result.png} 
+        \caption{\(L_2 - u_{3300}\)}\label{fig:one}    
+    \end{figure}
+
+
+    由图可知，图像与\(u_{3300}\) = 44℃之间交点为（0.0209，44），而60分钟的皮肤表面温度\(u_{3600}\)达不到47℃,由此可得满足约束条件的II层厚度的临界值为20.9mm，
+    由上面分析可知，该临界厚度为II层介质最优厚度。所以最终得到\(L2\)的最优厚度为20.9mm
+
 
      \subsection{问题三：确定II、IV层介质最优厚度} 
-        \subsection{问题的分析} 
-        问题三是求解 II，IV 两层的最优厚度的一个多目标的优化问题。类似于问题二，
-    需要求取满足约束条件情况下的II，IV 两层的厚度使服装成本最低和穿着舒适度最高。
-    该问题约束条件为假人皮肤外侧温度30分钟时不超过47ºC，25分钟时不超过44℃.考虑
-    对对II 介质与 IV 介质厚度进行双重循环遍历，寻找到满足约束条件的II、IV两层厚度
-    范围，最终根据服装成本最低和穿着舒适度最高的目标确定 II，IV 两层的最优厚度。
-        \subsection{模型的求解}   
+        \paragraph{问题的分析} 
+        与问题二类似，问题三仍需要求解满足约束条件下的II、IV层介质最优厚度，该问题变为双变量的优化问题，目标为服装成本最低与穿着舒适度最高。因此可以考虑求出
+    满足条件：
+                            公式
+    的II、IV层介质厚度的组合，在所有组合中寻找到使服装成本最低、穿着舒适度最高的II、IV层介质厚度。
+        \paragraph{模型的求解} 
+          
+        对II 介质与 IV 介质厚度进行双重循环遍历，寻找到满足约束条件（*****）的II、IV两层厚度范围，得出不同的II、IV厚度与1500秒时皮肤表面温度关系如图：
+     
 
+        在该图上做出皮肤表面温度为44℃的等温线（图中绿线），由约束条件可知在该线右上部分为满足条件的II、IV厚度范围。通过取步长为0.1mm，
+        得到一系列临近分布在图中绿线右上的点，显然这些点是恰好使得温度在1500s的时候不超过44℃，并且厚度尽可能小的：
+        （24.04 6.4）（24.24 6.3） （24.44 6.2） （24.54 6.1）（24.84 6.0）
+    
+        由上述列举的点可以发现，（24.04 6.4）使得高温作业专用服装的厚度达到最小值，此时服装成本最低且此时穿着舒适度最高。因此可以得到:
+        满足假人皮肤外侧温度30分钟时不超过47ºC，25分钟时不超过44℃的II层介质最优厚度为24.04mm，IV层介质最优厚度为6.4mm。
+    
 \section{模型的评价和推广}
     \subsection{模型优点} 
         \begin{itemize}
-            \item 利用Crank-Nicolson 差分格式对连续的模型进行离散化处理进行数值求解，能够获得误差更小的数值解。
-            \item 第三类边界条件由牛顿冷却方程得出，并合理考虑热传导的影响，使模型的建立更加接近实际情况；
-            \item 由物理传热规律求出两个传热系数之间的关系，进而减少变量对单一变量进行研究，结果误差更小；
+            \item 利用Crank-Nicolson 差分格式对连续的模型进行离散化处理进行数值求解,对前后差分取平均值,能够获得误差更小的数值解;
+            \item 在求解一定时刻的温度分布\(\bf{u}_t\)时,采用寻找不动点\(\bf{u}_s\)后直接做矩阵乘法的方法,极大提高了运算速度,可以较快求解;
+            \item 第三类边界条件由牛顿冷却方程得出,并合理考虑热传导的影响,使模型的建立更加接近实际情况;
+            \item 由物理传热规律求出两个传热系数之间的关系,进而减少变量对单一变量进行研究,结果误差更小;
         \end{itemize}
     \subsection{模型缺点}
         \begin{itemize}
             \item 在进行克兰克－尼科尔森差分法时，需要对数据进行离散化处理，会导致结果不精确;
         \end{itemize}
     \subsection{模型推广}
-    在本文中，我们建立了高温作业专用服装的数学模型，分析在不同温度、不同时间、不同
-材质情况下的高温作业专用服的隔热情况，进而通过温度要求对服装厚度和材料选取实现
-最优设计。不过我们目前设计的模型是在一维层面的，可以将其推广到二维，三维环境，
-以更符合现实情况。此外，我们建立的是一个传热的基本模型，所以可以将这个模型推广
-到其他热学问题领域。
+        在本文中，我们建立了高温作业专用服装的数学模型，分析在不同温度、不同时间、不同
+        材质情况下的高温作业专用服的隔热情况，进而通过温度要求对服装厚度和材料选取实现
+        最优设计。不过我们目前设计的模型是在一维层面的，可以将其推广到二维，三维环境，
+        以更符合现实情况。此外，我们建立的是一个传热的基本模型，所以可以将这个模型推广
+        到其他热学问题领域。
 \section{参考文献}
-
-\section{绘制普通三线表格}
-表格应具有三线表格式，因此常用 booktabs宏包，其标准格式如表~\ref{tab001}~所示。
-\begin{table}[!htbp]
-\caption{标准三线表格}\label{tab001} \centering
-\begin{tabular}{ccccc}
-\toprule[1.5pt]
-$D$(in) & $P_u$(lbs) & $u_u$(in) & $\beta$ & $G_f$(psi.in)\\
-\midrule[1pt]
- 5 & 269.8 & 0.000674 & 1.79 & 0.04089\\
-10 & 421.0 & 0.001035 & 3.59 & 0.04089\\
-20 & 640.2 & 0.001565 & 7.18 & 0.04089\\
-\bottomrule[1.5pt]
-\end{tabular}
-\end{table}
-
-其绘制表格的代码及其说明如下。
-\begin{tcode}
-\begin{table}[!htbp]
-\caption[标签名]{中文标题}
-\begin{tabular}{cc...c}
-\toprule[1.5pt]
-表头第1个格   & 表头第2个格   & ... & 表头第n个格  \\
-\midrule[1pt]
-表中数据(1,1) & 表中数据(1,2) & ... & 表中数据(1,n)\\
-表中数据(2,1) & 表中数据(2,2) & ... & 表中数据(2,n)\\
-...................................................\\
-表中数据(m,1) & 表中数据(m,2) & ... & 表中数据(m,n)\\
-\bottomrule[1.5pt]
-\end{tabular}
-\end{table}
-\end{tcode}
-
-\bigskip
-table环境是一个将表格嵌入文本的浮动环境。
-tabular环境的必选参数由每列对应一个格式字符所组成：c表示居中，l表示左对齐，r表示右对齐，其总
-个数应与表的列数相同。此外，\verb|@{文本}|可以出现在任意两个上述的列格式之间，其中的文本将被插入每一行
-的同一位置。表格的各行以\verb|\\|分隔，同一行的各列则以\&分隔。
-\verb|\toprule|、\verb|\midrule|和\verb|\bottomrule|三个命令是由booktabs宏包提供的，其
-中\verb|\toprule|和\verb|\bottomrule|分别用来绘制表格的第一条（表格最顶部）和第三条（表格最底部）水平线，
-\verb|\midrule|用来绘制第二条（表头之下）水平线，且第一条和第三条水平线的线宽为1.5pt，第二条水平线的线宽为1pt。
-引用方法：“如表~\verb|\ref{标签名}|~所示”。
 
 
 %参考文献
@@ -345,51 +367,139 @@ tabular环境的必选参数由每列对应一个格式字符所组成：c表示
 \newpage
 %附录
 \begin{appendices}
-\section{排队算法--matlab 源程序}
+\section{C-N方法的matlab代码}
 \begin{lstlisting}[language=matlab]
-kk=2;[mdd,ndd]=size(dd);
-while ~isempty(V)
-[tmpd,j]=min(W(i,V));tmpj=V(j);
-for k=2:ndd
-[tmp1,jj]=min(dd(1,k)+W(dd(2,k),V));
-tmp2=V(jj);tt(k-1,:)=[tmp1,tmp2,jj];
-end
-tmp=[tmpd,tmpj,j;tt];[tmp3,tmp4]=min(tmp(:,1));
-if tmp3==tmpd, ss(1:2,kk)=[i;tmp(tmp4,2)];
-else,tmp5=find(ss(:,tmp4)~=0);tmp6=length(tmp5);
-if dd(2,tmp4)==ss(tmp6,tmp4)
-ss(1:tmp6+1,kk)=[ss(tmp5,tmp4);tmp(tmp4,2)];
-else, ss(1:3,kk)=[i;dd(2,tmp4);tmp(tmp4,2)];
-end;end
-dd=[dd,[tmp3;tmp(tmp4,2)]];V(tmp(tmp4,3))=[];
-[mdd,ndd]=size(dd);kk=kk+1;
-end; S=ss; D=dd(1,:);
- \end{lstlisting}
- \section{规划解决程序--lingo源代码}
-\begin{lstlisting}[language=c]
-kk=2;
-[mdd,ndd]=size(dd);
-while ~isempty(V)
-    [tmpd,j]=min(W(i,V));tmpj=V(j);
-for k=2:ndd
-    [tmp1,jj]=min(dd(1,k)+W(dd(2,k),V));
-    tmp2=V(jj);tt(k-1,:)=[tmp1,tmp2,jj];
-end
-    tmp=[tmpd,tmpj,j;tt];[tmp3,tmp4]=min(tmp(:,1));
-if tmp3==tmpd, ss(1:2,kk)=[i;tmp(tmp4,2)];
-else,tmp5=find(ss(:,tmp4)~=0);tmp6=length(tmp5);
-if dd(2,tmp4)==ss(tmp6,tmp4)
-    ss(1:tmp6+1,kk)=[ss(tmp5,tmp4);tmp(tmp4,2)];
-else, ss(1:3,kk)=[i;dd(2,tmp4);tmp(tmp4,2)];
-end;
-end
-    dd=[dd,[tmp3;tmp(tmp4,2)]];V(tmp(tmp4,3))=[];
-    [mdd,ndd]=size(dd);
-    kk=kk+1;
-end;
-S=ss;
-D=dd(1,:);
- \end{lstlisting}
+    function u_alltime = getUt(hl,hr)
+    u_0 = 37;
+    u_end = 75;
+    %hl = 8.318143355830285;
+    %hr = 1.002000000000000e+02;
+    total_time = 5400;
+    del_x = 1e-4;
+    del_t = 0.01;
+    L1 = 0.6/1000;
+    L2 = 6/1000;
+    L3 = 3.6/1000;
+    L4 = 5/1000;
+    x43 = L4;
+    
+    x32 = L4+L3;
+    
+    x21 = L4+L3+L2;
+    
+    x0 = 0;
+    xend = L4+L3+L2+L1;
+    xp = [x0,x43,x32,x21,xend];
+    %t = 0:del_t:300;
+    N = round(xend/del_x+1);
+    Rp = zeros(N,N);
+    Rn = zeros(N,N);
+    delta = zeros(N,1);
+    r4 = del_t*2.361075976051944e-05/(2*del_x^2);
+    r3 = del_t*3.441935316092042e-07/(2*del_x^2);
+    r2 = del_t*2.043973041652856e-07/(2*del_x^2);
+    r1 = del_t*1.984991527475188e-07/(2*del_x^2);
+    rs = [r1,r2,r3,r4];
+    
+    k4 = 0.028;
+    k3 = 0.045;
+    k2 = 0.37;
+    k1 = 0.082;
+    k = [k4,k3,k2,k1];
+    
+    rho4 = 1.18;
+    rho3 = 74.2;
+    rho2 = 862;
+    rho1 = 300;
+    rho = [rho4,rho3,rho2,rho1];
+    
+    c4 = 1055;
+    c3 = 1726;
+    c2 = 2100;
+    c1 = 1377;
+    c = [c4,c3,c2,c1];
+    
+    
+    %R_n * u_n+1 = R_p * u_n + b
+    
+    
+    %Rp(1,1) = k4/del_x + hl;
+    %Rp(1,2) = -k4/(del_x);
+    
+    %Rn(1,1) = -hl-k4/del_x;
+    %Rn(1,2) = -k4/(del_x);
+    d_edge = 0.5*del_x;
+    Rp(1,1) = - k4/(2*del_x*d_edge) - hl/(2*d_edge) + rho4*c4/del_t;
+    Rp(1,2) = k4/(2*del_x*d_edge);
+    
+    Rn(1,1) = k4/(2*del_x*d_edge) + hl/(2*d_edge) +  rho4*c4/del_t;
+    Rn(1,2) = -k4/(2*del_x*d_edge);
+    
+    delta(1) = hl*u_0/d_edge;
+    
+    
+    
+    for region = 1:4
+        a = round(2 + xp(region)/del_x);
+        b = round(xp(region+1)/del_x);
+        r = rs(region);
+        for index = a:b
+    
+            Rp(index,index-1) = r;   
+            Rp(index,index) = 1-2*r;
+            Rp(index,index+1) = r;
+        
+            Rn(index,index-1) = -r;
+            Rn(index,index) = 1 + 2*r;
+            Rn(index,index+1) = -r ;
+        end
+        index = index + 1;
+        % (u_{i+1} - u_{i})*k_{next} = (u_{i} - u_{i-1})*k_{pre}
+        
+        if region == 4
+            Rp(index,index-1) = k1/(2*del_x*d_edge);
+            Rp(index,index) = - k1/(2*del_x*d_edge) - hr/(2*d_edge) + rho1*c1/del_t;
+            Rn(index,index) = rho1*c1/del_t + k1/(2*del_x*d_edge) + hr/(2*d_edge);
+            Rn(index,index-1) = -k1/(2*del_x*d_edge);
+            delta(N) = hr*u_end/(d_edge);
+        else
+            kn = k(region+1);
+            kp = k(region);
+    
+            rhocm = 0.5*c(region)*rho(region)+0.5*c(region+1)*rho(region+1);
+            
+            rn = del_t*kn/(rhocm*2*del_x^2);
+            rp = del_t*kp/(rhocm*2*del_x^2);
+            Rp(index,index-1) = rp;   
+            Rp(index,index) = 1-rn-rp;
+            Rp(index,index+1) = rn;
+    
+            Rn(index,index-1) = -rp;
+            Rn(index,index) = 1+rn+rp;
+            Rn(index,index+1) = -rn;
+        end
+    end
+    
+    
+    
+        A = Rn\Rp;
+        b = Rn\delta;
+        u_s = (eye(N)-A)\b;
+        u_t = ones(N,1)*37.0;
+        u_del = u_t - u_s;
+        A_dt = A^100;
+        
+        u_alltime = zeros(total_time+1,1);
+        i = 1;
+        for time = 0:1:total_time
+            u_alltime(i) = u_t(1);
+            u_del = A_dt*u_del;
+            u_t = u_del + u_s;
+            i = i +1;
+        end
+    end
+\end{lstlisting}
+
 \end{appendices}
 
 \end{document} 
