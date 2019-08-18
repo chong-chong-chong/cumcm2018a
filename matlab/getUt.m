@@ -1,15 +1,15 @@
-function u_alltime = getUt(L2)
+function u_alltime = getUt(hl,hr)
 u_0 = 37;
-u_end = 65;
-hl = 8.318143355830285;
-hr = 1.002000000000000e+02;
-total_time = 1500;
+u_end = 75;
+%hl = 8.318143355830285;
+%hr = 1.002000000000000e+02;
+total_time = 5400;
 del_x = 1e-4;
 del_t = 0.01;
 L1 = 0.6/1000;
-%L2 = 0.6/1000;
+L2 = 6/1000;
 L3 = 3.6/1000;
-L4 = 5.5/1000;
+L4 = 5/1000;
 x43 = L4;
 
 x32 = L4+L3;
@@ -57,14 +57,14 @@ c = [c4,c3,c2,c1];
 
 %Rn(1,1) = -hl-k4/del_x;
 %Rn(1,2) = -k4/(del_x);
+d_edge = 0.5*del_x;
+Rp(1,1) = - k4/(2*del_x*d_edge) - hl/(2*d_edge) + rho4*c4/del_t;
+Rp(1,2) = k4/(2*del_x*d_edge);
 
-Rp(1,1) = - k4/(2*del_x^2) - hl/(2*del_x) + rho4*c4/del_t;
-Rp(1,2) = k4/(2*del_x^2);
+Rn(1,1) = k4/(2*del_x*d_edge) + hl/(2*d_edge) +  rho4*c4/del_t;
+Rn(1,2) = -k4/(2*del_x*d_edge);
 
-Rn(1,1) = k4/(2*del_x^2) + hl/(2*del_x) +  rho4*c4/del_t;
-Rn(1,2) = -k4/(2*del_x^2);
-
-delta(1) = hl*u_0/del_x;
+delta(1) = hl*u_0/d_edge;
 
 
 
@@ -86,20 +86,19 @@ for region = 1:4
     % (u_{i+1} - u_{i})*k_{next} = (u_{i} - u_{i-1})*k_{pre}
     
     if region == 4
-        Rp(index,index-1) = k1/(2*del_x^2);
-        Rp(index,index) = - k1/(2*del_x^2) - hr/(2*del_x) + rho1*c1/del_t;
-        Rn(index,index) = rho1*c1/del_t + k1/(2*del_x^2) + hr/(2*del_x);
-        Rn(index,index-1) = -k1/(2*del_x^2);
-        delta(N) = hr*u_end/(del_x);
+        Rp(index,index-1) = k1/(2*del_x*d_edge);
+        Rp(index,index) = - k1/(2*del_x*d_edge) - hr/(2*d_edge) + rho1*c1/del_t;
+        Rn(index,index) = rho1*c1/del_t + k1/(2*del_x*d_edge) + hr/(2*d_edge);
+        Rn(index,index-1) = -k1/(2*del_x*d_edge);
+        delta(N) = hr*u_end/(d_edge);
     else
         kn = k(region+1);
         kp = k(region);
-        alpha____ = 0.5;
-        beta____ = 1-alpha____;
-        cm = alpha____*c(region)+beta____*c(region+1);
-        rhom = alpha____*rho(region)+beta____*rho(region+1);
-        rn = del_t*kn/(rhom*cm*2*del_x^2);
-        rp = del_t*kp/(rhom*cm*2*del_x^2);
+
+        rhocm = 0.5*c(region)*rho(region)+0.5*c(region+1)*rho(region+1);
+        
+        rn = del_t*kn/(rhocm*2*del_x^2);
+        rp = del_t*kp/(rhocm*2*del_x^2);
         Rp(index,index-1) = rp;   
         Rp(index,index) = 1-rn-rp;
         Rp(index,index+1) = rn;

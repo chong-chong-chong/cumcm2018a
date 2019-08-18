@@ -1,0 +1,86 @@
+\documentclass[utf8]{ctexart}
+\usepackage{amsmath}
+\usepackage{bf}
+\usepackage{bm}
+\begin{document}
+    \section{求解问题一}
+
+    利用热传导方程:
+    给定区间\[x_0,x_1\dots\]
+    \[k\frac{\partial^2 u}{\partial x^2} = \frac{\partial u}{\partial t}\rho c |_{x_{i-1}<x<x_{i}}\]
+    在不同介质交换处,由\(\frac{\partial{q}}{\partial{x}} = \frac{\partial{u}}{\partial{t}} \rho c \)
+    可得:
+    \[ 
+        \lim_{\delta \to 0^+} 
+        k_{i+1 }\frac{\partial{u(x_i+\delta)}}{\partial{x}} 
+        -
+        \int_{x_i}^{x_i+\delta}\frac{\partial{u}}{\partial{t}} \rho_{i+1} c_{i+1} dx 
+        = 
+        \lim_{\delta \to 0^+} 
+        k_{i} \frac{\partial{u(x_i-\delta)}}{\partial{x}}
+        - 
+        \int_{x_i}^{x_i-\delta}\frac{\partial{u}}{\partial{t}} \rho_i c_i dx
+        =
+        q(x_i)
+    \]
+    在左端,考虑对流换热,由:\(q = h\Delta u\)
+    有:
+    \[
+        \lim_{\delta \to 0^+} 
+        k\frac{\partial{u(\delta)}}{\partial{x}} 
+        - 
+        h[u(0) - u_w]
+        -
+        \int_{0}^{\delta}\frac{\partial{u}}{\partial{t}} \rho c dx 
+        = 0
+    \]
+    右端亦然.
+    采用C-K方法做差分:
+    在单一介质内部,有:
+    \[
+        \frac{1}{2}
+        \left(
+            \frac{u_{i+1}^{n+1} + u_{i-1}^{n+1} - 2u_{i}^{n+1} }{\Delta x^2}
+            +
+            \frac{u_{i+1}^{n} + u_{i-1}^{n} - 2u_{i}^{n} }{\Delta x^2}
+        \right)
+        k
+        =
+        \frac{ u_{i}^{n+1} - u_{i}^{n} }{\Delta t} \rho c
+    \]
+    记:
+    \( r = \frac{k \Delta t}{ 2 \rho c \Delta x^2 } \)
+    整理得:
+    \[
+        -ru_{i+1}^{n+1} + (1+2r)u_{i}^{n+1} + -ru_{i-1}^{n+1}
+        =
+        ru_{i+1}^{n} + (1-2r)u_{i}^{n} + ru_{i-1}^{n}
+    \]
+    在介质交界处,记前一种介质的热传导率为\(k_p\),后一种介质的热传导率为\(k_n\)有:
+    \[
+        \frac{1}{2}
+        \left[
+            \frac{k_n u_{i+1}^{n+1} + k_p u_{i-1}^{n+1} - (k_p+k_n)u_{i}^{n+1}) }{\Delta x^2}
+            +
+            \frac{k_n u_{i+1}^{n} + k_p u_{i-1}^{n} - (k_p+k_n)u_{i}^{n}) }{\Delta x^2}
+        \right]
+        k
+        =
+        \frac{ u_{i}^{n+1} - u_{i}^{n} }{\Delta t} \rho c
+    \]
+    根据这样多重线性映射的关系,得到递推式:
+    \(\bf{R_n}\bf{u}^{n+1} = \bf{R_p}\bf{u}^{n} + \bf{q}\)
+    记:
+    \(\bf{A} = \bf{R}_n^{-1}\bf{R}_p\)
+    \(\bf{b} = \bf{R}_n^{-1}\bf{q}\)
+    有递推关系式
+    \(\bf{u}^{n+1} = \bf{A}\bf{u}^{n} + \bf{b}\)
+    记这个映射有不动点:
+    \(\bf{u}_s = \bf{A}\bf{u}_s + \bf{b}\)
+    则有:
+    \(  \bf{u}^{n+1} - \bf{u}_s = \bf{A} (\bf{u}^n - \bf{u}_s) \)
+    即:
+    \(  \bf{u}^{n} = \bf{A}^n (\bf{u}^0 - \bf{u}_s) + \bf{u}_s\)
+    显然的:
+    \(\bf{u}_s = (\bf{I} - \bf{A})^{-1}\bf{b}\)
+\end{document}
