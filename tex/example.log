@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.11.13)  18 AUG 2019 23:16
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018/W32TeX) (preloaded format=xelatex 2018.11.13)  19 AUG 2019 09:43
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1486,7 +1486,11 @@ Package hyperref Info: Option `breaklinks' set `true' on input line 227.
 Package: xeCJK-listings 2018/04/07 v3.7.0 xeCJK patch file for listings
 \l__xeCJK_listings_max_char_int=\count336
 \l__xeCJK_listings_flag_int=\count337
-) (./example.aux)
+) (./example.aux
+
+LaTeX Warning: Label `diff' multiply defined.
+
+)
 \openout1 = `example.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -1775,40 +1779,29 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 22.
  (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2]
-LaTeX Font Info:    Calculating math sizes for size <12.05> on input line 24.
- [1] (./example.toc
+) [2] [1] (./example.toc
 Overfull \hbox (2.35254pt too wide) detected at line 1
 \TU/SimHei(0)/bx/n/12.045 一、|  
  []
 
+LaTeX Font Info:    Calculating math sizes for size <12.05> on input line 1.
 
 Overfull \hbox (2.35254pt too wide) detected at line 4
 \TU/SimHei(0)/bx/n/12.045 二、|  
  []
 
 
-Overfull \hbox (2.35254pt too wide) detected at line 5
+Overfull \hbox (2.35254pt too wide) detected at line 8
 \TU/SimHei(0)/bx/n/12.045 三、|  
  []
 
 
-Overfull \hbox (2.35254pt too wide) detected at line 6
+Overfull \hbox (2.35254pt too wide) detected at line 9
 \TU/SimHei(0)/bx/n/12.045 四、|  
  []
 
 
-Overfull \hbox (0.86446pt too wide) detected at line 16
-\TU/TimesNewRoman(0)/m/n/12.05 4.10 
- []
-
-
-Overfull \hbox (0.41728pt too wide) detected at line 17
-\TU/TimesNewRoman(0)/m/n/12.05 4.11 
- []
-
-
-Overfull \hbox (2.35254pt too wide) detected at line 18
+Overfull \hbox (2.35254pt too wide) detected at line 10
 \TU/SimHei(0)/bx/n/12.045 五、|  
  []
 
@@ -1817,207 +1810,160 @@ Overfull \hbox (2.35254pt too wide) detected at line 22
 \TU/SimHei(0)/bx/n/12.045 六、|  
  []
 
+
+Overfull \hbox (2.35254pt too wide) detected at line 26
+\TU/SimHei(0)/bx/n/12.045 七、|  
+ []
+
 )
 \tf@toc=\write5
 \openout5 = `example.toc'.
 
+ [2]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00876pt
+(hyperref)                removed on input line 36.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 38.
+(hyperref)                removed on input line 36.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 38.
-
-[2]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 52.
+(hyperref)                removed on input line 50.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 52.
+(hyperref)                removed on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00876pt
+(hyperref)                removed on input line 70.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00876pt
+(hyperref)                removed on input line 70.
 
 [3]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 108.
+(hyperref)                removed on input line 91.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 108.
+(hyperref)                removed on input line 91.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 109.
+(hyperref)                removed on input line 102.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 109.
+(hyperref)                removed on input line 102.
 
 [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 123.
+(hyperref)                removed on input line 148.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 123.
+(hyperref)                removed on input line 148.
 
+[5]
 File: ../figure/diff.png Graphic file (type bmp)
 <../figure/diff.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (1.19537pt too wide) detected at line 205
+ [6]
+Overfull \hbox (1.19537pt too wide) detected at line 241
 [] [] \OT1/cmr/m/n/12.05 = []\OML/cmm/m/it/12.05 ^^Zc
  []
 
-[5] [6]
 Missing character: There is no ^^A in font Times New Roman Bold/OT:script=latn;language=DFLT;mapping=tex-text;!
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 239.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 239.
-
+[7]
 File: ../figure/ques1Optimization.png Graphic file (type bmp)
 <../figure/ques1Optimization.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 257.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 257.
-
 File: ../figure/ques1result.png Graphic file (type bmp)
 <../figure/ques1result.png>
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00876pt
+(hyperref)                removed on input line 304.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 266.
+(hyperref)                removed on input line 304.
 
+[8]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 266.
+LaTeX Warning: Command \L invalid in math mode on input line 321.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 267.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 267.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 274.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 274.
-
+Missing character: There is no Ł in font cmmi12!
 File: ../figure/ques2result.png Graphic file (type bmp)
 <../figure/ques2result.png>
 
-Overfull \hbox (96.19229pt too wide) in paragraph at lines 282--283
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00876pt
+(hyperref)                removed on input line 335.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00876pt
+(hyperref)                removed on input line 335.
+
+[9]
+File: ../figure/ques3HeatMapByL2L4.png Graphic file (type bmp)
+<../figure/ques3HeatMapByL2L4.png>
+
+Overfull \hbox (8.80252pt too wide) in paragraph at lines 355--356
  [][] 
  []
 
-[7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 287.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 287.
+(hyperref)                removed on input line 369.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 288.
+(hyperref)                removed on input line 369.
+
+[10] [11]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00876pt
+(hyperref)                removed on input line 376.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 288.
+(hyperref)                removed on input line 376.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 294.
+(hyperref)                removed on input line 381.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 294.
+(hyperref)                removed on input line 381.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 297.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 297.
-
-[8] [9]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 304.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 304.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 308.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.00876pt
-(hyperref)                removed on input line 308.
-
-[10] (c:/texlive/2018/texmf-dist/tex/latex/listings/lstlang1.sty
+[12] (c:/texlive/2018/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 \g__fontspec_family_FangSong_int=\count343
@@ -2048,27 +1994,30 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 . <->"FangSong/OT:script=hani;language=DFLT;"
 . - 'small caps'  (m/sc) with NFSS spec.: 
 .................................................
- [11] [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 461.
- [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 461.
+ [13] [14]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 534.
+ [15]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 534.
  (./example.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 461.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 461.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 534.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 534.
 Package rerunfilecheck Info: File `example.out' has not changed.
-(rerunfilecheck)             Checksum: BF3CAE583E482A17F6D3187A1614F4B2.
+(rerunfilecheck)             Checksum: 8B8646AB7398F5A579DB5C5C83706840.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 28559 strings out of 492970
- 567684 string characters out of 6137297
- 694022 words of memory out of 5000000
- 32166 multiletter control sequences out of 15000+600000
- 553448 words of font info for 165 fonts, out of 8000000 for 9000
+ 28567 strings out of 492970
+ 567917 string characters out of 6137297
+ 694302 words of memory out of 5000000
+ 32172 multiletter control sequences out of 15000+600000
+ 553456 words of font info for 166 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,11n,71p,10471b,2406s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on example.pdf (15 pages).
+Output written on example.pdf (17 pages).
