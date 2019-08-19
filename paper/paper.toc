@@ -1,0 +1,29 @@
+\contentsline {section}{\numberline {一、}问题重述}{3}{section.1}
+\contentsline {subsection}{\numberline {1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题背景}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题重述}{3}{subsection.1.2}
+\contentsline {section}{\numberline {二、}问题分析}{3}{section.2}
+\contentsline {subsection}{\numberline {2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题一的分析}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题二的分析}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}问题三的分析}{4}{subsection.2.3}
+\contentsline {section}{\numberline {三、}模型假设}{4}{section.3}
+\contentsline {section}{\numberline {四、}符号说明}{5}{section.4}
+\contentsline {section}{\numberline {五、}模型建立与求解}{5}{section.5}
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题一：确定温度分布情况}{5}{subsection.5.1}
+\contentsline {paragraph}{问题的分析}{5}{section*.2}
+\contentsline {paragraph}{模型的建立}{5}{section*.3}
+\contentsline {paragraph}{模型的求解}{8}{section*.5}
+\contentsline {paragraph}{结果的分析和检验}{8}{section*.7}
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题二：确定II层介质最优厚度}{9}{subsection.5.2}
+\contentsline {paragraph}{问题的分析}{9}{section*.9}
+\contentsline {paragraph}{模型的求解}{9}{section*.10}
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}问题三：确定II、IV层介质最优厚度}{10}{subsection.5.3}
+\contentsline {paragraph}{问题的分析}{10}{section*.12}
+\contentsline {paragraph}{模型的求解}{10}{section*.13}
+\contentsline {section}{\numberline {六、}模型的评价和推广}{11}{section.6}
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型优点}{11}{subsection.6.1}
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型缺点}{12}{subsection.6.2}
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型推广}{12}{subsection.6.3}
+\contentsline {section}{\numberline {七、}参考文献}{12}{section.7}
+\contentsline {section}{参考文献}{12}{section*.15}
+\contentsline {section}{附录 \numberline {A}C-N方法的matlab代码}{13}{附录.a.A}
+\contentsfinish 
